@@ -1,0 +1,20 @@
+{% load staticfiles %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
+<head>
+	<title>Все записи:</title>
+</head>
+<body>
+	{% for post in object_list %}
+    <div class="well">
+		<a href="{% url 'PostDetail' post.id %}">{{ post.title }}</a>
+    	<p class="lead">{{ post.content }}</p>
+    	<small>{{ post.timestamp }}</small>
+    </div>
+	{% empty %}
+    	<p>No articles yet.</p>
+	{% endfor %}
+</body>
