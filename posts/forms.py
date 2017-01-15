@@ -7,3 +7,8 @@ class PostCreateForm(ModelForm):
 	class Meta:
 		model = Post
 		fields = ('title', 'content')
+
+class SettingForm(ModelForm):
+	class Meta:
+		model = Post
+		fields = ('title', 'content')

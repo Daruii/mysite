@@ -18,18 +18,19 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from posts import views
-from posts.views import PostList, PostCreate, PostDetail, Index
+from posts.views import PostList, PostCreate, PostDetail, Index, Setting
 from django.conf.urls.static import static
 from django.conf import settings
 
 
 urlpatterns = [
-    url(r'^$', Index.as_view()),
-   	url(r'^$', PostList.as_view()),
+    url(r'^index/$', Index.as_view()),
+   	url(r'^list/$', PostList.as_view()),
     url(r'^(?P<pk>[0-9]+)/$', PostDetail.as_view()),
    	url(r'^create/$', PostCreate.as_view()),
-   	url(r'^update/$', views.post_update),
+   	url(r'^update/(?P<pk>[0-9]+)/$', views.UpdatePost),
    	url(r'^delete/(?P<pk>[0-9]+)/$', views.DeletePost, name="DeletePost"),
+    url(r'^setting/$', Setting.as_view()),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += staticfiles_urlpatterns()

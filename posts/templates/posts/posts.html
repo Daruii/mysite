@@ -1,20 +1,27 @@
+{% extends "posts/index.html" %}
+
 {% load staticfiles %}
 {% load bootstrap3 %}
 {% bootstrap_css %}
 {% bootstrap_javascript %}
 
 
+{% block page %}
 <head>
-	<title>Все записи:</title>
+	<title>Список записей</title>
 </head>
 <body>
 	{% for post in object_list %}
     <div class="well">
-		<a href="{% url 'PostDetail' post.id %}">{{ post.title }}</a>
-    	<p class="lead">{{ post.content }}</p>
-    	<small>{{ post.timestamp }}</small>
+        <a href="../../posts/{{post.id}}">
+            <p class="lead">{{ post.title}}</p>
+        </a>    	
+        <p>{{ post.content }}</p>
+        <small>{{ post.timestamp }}</small>
     </div>
 	{% empty %}
     	<p>No articles yet.</p>
 	{% endfor %}
 </body>
+{% endblock %}
+
